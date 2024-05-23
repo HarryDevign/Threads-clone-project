@@ -19,14 +19,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    // <ClerkProvider
-    //   appearance={{
-    //     baseTheme: dark,
-    //   }}
-    // >
+    <ClerkProvider
+      appearance={{
+        // baseTheme: dark,
+      }}
+    >
       <html lang='en'>
         <body className={`${inter.className} bg-dark-1`}>{children}</body>
       </html>
-    // </ClerkProvider>
+    </ClerkProvider>
   );
 }
