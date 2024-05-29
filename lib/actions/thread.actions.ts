@@ -49,17 +49,21 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
 }
 
 interface Params {
-  text: string;
-  author: string;
-  communityId: string | null;
-  path: string;
+  text: string,
+  author: string,
+  communityId: string | null,
+  path: string,
 }
 
-export async function createThread({ text, author, communityId, path }: Params) {
+export async function createThread({ text, author, communityId, path }: Params
+) {
   try {
     connectToDB();
 
-    const communityIdObject = await Community.findOne({ id: communityId }, { _id: 1 });
+    const communityIdObject = await Community.findOne(
+      { id: communityId },
+      { _id: 1 }
+    );
 
     const createdThread = await Thread.create({
       text,
@@ -112,7 +116,10 @@ export async function deleteThread(id: string, path: string): Promise<void> {
     const descendantThreads = await fetchAllChildThreads(id);
 
     // Get all descendant thread IDs including the main thread ID and child thread IDs
-    const descendantThreadIds = [id, ...descendantThreads.map((thread) => thread._id)];
+    const descendantThreadIds = [
+      id,
+      ...descendantThreads.map((thread) => thread._id),
+    ];
 
     // Extract the authorIds and communityIds to update User and Community models respectively
     const uniqueAuthorIds = new Set(

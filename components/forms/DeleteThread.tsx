@@ -13,7 +13,13 @@ interface Props {
   isComment?: boolean;
 }
 
-function DeleteThread({ threadId, currentUserId, authorId, parentId, isComment }: Props) {
+function DeleteThread({
+  threadId,
+  currentUserId,
+  authorId,
+  parentId,
+  isComment,
+}: Props) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -21,11 +27,11 @@ function DeleteThread({ threadId, currentUserId, authorId, parentId, isComment }
 
   return (
     <Image
-      src="/assets/delete.svg"
-      alt="delte"
+      src='/assets/delete.svg'
+      alt='delte'
       width={18}
       height={18}
-      className="cursor-pointer object-contain"
+      className='cursor-pointer object-contain'
       onClick={async () => {
         await deleteThread(JSON.parse(threadId), pathname);
         if (!parentId || !isComment) {

@@ -128,7 +128,10 @@ export async function fetchCommunities({
 
     // If the search string is not empty, add the $or operator to match either username or name fields.
     if (searchString.trim() !== "") {
-      query.$or = [{ username: { $regex: regex } }, { name: { $regex: regex } }];
+      query.$or = [
+        { username: { $regex: regex } },
+        { name: { $regex: regex } },
+      ];
     }
 
     // Define the sort options for the fetched communities based on createdAt field and provided sort order.
@@ -156,7 +159,10 @@ export async function fetchCommunities({
   }
 }
 
-export async function addMemberToCommunity(communityId: string, memberId: string) {
+export async function addMemberToCommunity(
+  communityId: string,
+  memberId: string
+) {
   try {
     connectToDB();
 
@@ -195,12 +201,18 @@ export async function addMemberToCommunity(communityId: string, memberId: string
   }
 }
 
-export async function removeUserFromCommunity(userId: string, communityId: string) {
+export async function removeUserFromCommunity(
+  userId: string,
+  communityId: string
+) {
   try {
     connectToDB();
 
     const userIdObject = await User.findOne({ id: userId }, { _id: 1 });
-    const communityIdObject = await Community.findOne({ id: communityId }, { _id: 1 });
+    const communityIdObject = await Community.findOne(
+      { id: communityId },
+      { _id: 1 }
+    );
 
     if (!userIdObject) {
       throw new Error("User not found");
