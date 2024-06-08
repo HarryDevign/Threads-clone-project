@@ -1,3 +1,5 @@
+const { url } = require('inspector');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -173,7 +175,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        "primary-500": "#877EFF",
+        "primary-500": "#40A578",
         "secondary-500": "#FFB620",
         blue: "#0095F6",
         "logout-btn": "#FF5A5A",
@@ -195,6 +197,9 @@ module.exports = {
       },
       screens: {
         xs: "400px",
+      },
+      backgroundImage: {
+        'auth-pattern': "url('/public/auth-pattern.jpg')"
       },
       keyframes: {
         "accordion-down": {
